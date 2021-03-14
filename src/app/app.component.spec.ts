@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('moviebase');
   });
 
-  it('should render title', () => {
+  it('should have header', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('moviebase app is running!');
+    expect(compiled.querySelector('header').querySelector('app-header')).toBeTruthy();
   });
 });

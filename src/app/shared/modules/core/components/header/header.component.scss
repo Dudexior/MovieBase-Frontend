@@ -1,0 +1,10 @@
+.toolbar__logo{
+  height: 50%;
+  width:auto;
+}
+
+@media (max-width: 414px){
+  .toolbar{
+    justify-content: center;
+  }
+}
