@@ -1,4 +1,4 @@
-<div class="card mat-elevation-z5">
+<div class="card mat-elevation-z5" (mouseenter)="showDesc = true" (mouseleave)="showDesc = false">
   <div class="card__imageWrapper">
     <app-image-wrapper [imageDataURL]="movie.image"></app-image-wrapper>
   </div>
@@ -8,7 +8,7 @@
         {{movie.title}}
       </p>
     </div>
-    <div class="info__hidden">
+    <div @slideHeight *ngIf="showDesc" class="info__hidden">
       <div class="hidden__desc">
         <p>
           {{movie.description}}
