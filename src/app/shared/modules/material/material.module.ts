@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -15,12 +16,14 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class MaterialModule { }

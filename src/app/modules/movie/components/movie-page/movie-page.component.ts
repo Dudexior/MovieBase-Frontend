@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DeviceService } from 'src/app/shared/modules/services/device.service';
 import { Movie } from '../../models/movie';
 import { MovieService } from '../../services/movie.service';
 
@@ -12,12 +13,14 @@ export class MoviePageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   movies: Movie[] = [];
   loading = false;
+  onTouchScreen = false;
 
-  constructor(private moviesService: MovieService) { }
+  constructor(private moviesService: MovieService, private deviceService: DeviceService) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.downloadMovies()
+      this.downloadMovies(),
+      this.listenToTouchScreen()
     );
   }
 
@@ -30,6 +33,12 @@ export class MoviePageComponent implements OnInit, OnDestroy {
     }, () => {
       // error actions
       this.loading = false;
+    });
+  }
+
+  private listenToTouchScreen(): Subscription {
+    return this.deviceService.onTouchScreen$.subscribe(res => {
+      this.onTouchScreen = res;
     });
   }
 

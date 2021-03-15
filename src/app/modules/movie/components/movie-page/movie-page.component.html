@@ -1,6 +1,6 @@
 <div class="pageWrapper">
   <mat-spinner *ngIf="loading; else moviesTemplate"></mat-spinner>
   <ng-template #moviesTemplate>
-    <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+    <app-movie-card *ngFor="let movie of movies" [movie]="movie" [onTouchScreen]="onTouchScreen"></app-movie-card>
   </ng-template>
 </div>

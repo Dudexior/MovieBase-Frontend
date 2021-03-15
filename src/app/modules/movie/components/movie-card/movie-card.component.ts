@@ -12,11 +12,19 @@ import { Movie } from '../../models/movie';
 export class MovieCardComponent implements OnInit {
 
   @Input() movie!: Movie;
+  @Input() onTouchScreen = false;
+
   // variable manipulated from HTML
   showDesc = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  clickAction(): void {
+    if (!this.onTouchScreen) {
+      // TODO router navigation
+    }
   }
 }

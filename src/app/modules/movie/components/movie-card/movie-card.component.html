@@ -1,4 +1,5 @@
-<div class="card mat-elevation-z5" (mouseenter)="showDesc = true" (mouseleave)="showDesc = false">
+<div class="card mat-elevation-z5" (mouseenter)="showDesc = true" (mouseleave)="showDesc = false"
+  (click)="clickAction()">
   <div class="card__imageWrapper">
     <app-image-wrapper [imageDataURL]="movie.image"></app-image-wrapper>
   </div>
@@ -17,6 +18,8 @@
       <div class="hidden__time">
         <mat-icon class="time__icon">schedule</mat-icon>{{movie.duration}} min
       </div>
+      <div class="hidden__actions" *ngIf="onTouchScreen">
+        <button mat-flat-button color="primary">More info</button>
+      </div>
     </div>
   </div>
-</div>
