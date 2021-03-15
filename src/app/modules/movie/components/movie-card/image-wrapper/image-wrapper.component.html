@@ -1,0 +1,4 @@
+<img *ngIf="imageDataURL; else imagePlaceholder" [src]="imageDataURL" alt="movie image">
+<ng-template #imagePlaceholder>
+  <img src="assets/movie_placeholder.png" alt="movie image placeholder">
+</ng-template>

@@ -1,0 +1,22 @@
+<div class="card mat-elevation-z5">
+  <div class="card__imageWrapper">
+    <app-image-wrapper [imageDataURL]="movie.image"></app-image-wrapper>
+  </div>
+  <div class="card__info">
+    <div class="info__title">
+      <p class="mat-title">
+        {{movie.title}}
+      </p>
+    </div>
+    <div class="info__hidden">
+      <div class="hidden__desc">
+        <p>
+          {{movie.description}}
+        </p>
+      </div>
+      <div class="hidden__time">
+        <mat-icon class="time__icon">schedule</mat-icon>{{movie.duration}} min
+      </div>
+    </div>
+  </div>
+</div>

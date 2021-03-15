@@ -1,5 +1,10 @@
 .pageWrapper{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+app-movie-card{
+  margin: 20px 15px 20px 15px;
 }
