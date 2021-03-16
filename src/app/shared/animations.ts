@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 
 export const slideHeight = trigger('slideHeight', [
   state('void', style({
@@ -12,5 +12,17 @@ export const slideHeight = trigger('slideHeight', [
 
   transition('* <=> void', [
     animate(200)
+  ])
+]);
+
+export const staggerScale = trigger('staggerScale', [
+  transition('* => *', [
+    query(':enter', [
+      style({ transform: 'scale(0)' }),
+      stagger(100, animate(400, style({ transform: 'scale(1)' })))
+    ]),
+    query(':leave', animate(50, style({ transform: 'scale(0)' })), {
+      optional: true
+    })
   ])
 ]);

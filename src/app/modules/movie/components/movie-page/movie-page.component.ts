@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { staggerScale } from 'src/app/shared/animations';
 import { DeviceService } from 'src/app/shared/modules/services/device.service';
 import { Movie } from '../../models/movie';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
   templateUrl: './movie-page.component.html',
-  styleUrls: ['./movie-page.component.scss']
+  styleUrls: ['./movie-page.component.scss'],
+  animations: [staggerScale]
 })
 export class MoviePageComponent implements OnInit, OnDestroy {
 

@@ -1,6 +1,12 @@
 <div class="pageWrapper">
-  <mat-spinner *ngIf="loading; else moviesTemplate"></mat-spinner>
+  <mat-spinner *ngIf="loading && movies.length == 0; else moviesTemplate"></mat-spinner>
   <ng-template #moviesTemplate>
-    <app-movie-card *ngFor="let movie of movies" [movie]="movie" [onTouchScreen]="onTouchScreen"></app-movie-card>
+    <div class="pageWrapper__movies" *ngIf="movies.length !== 0" [@staggerScale]="movies.length">
+      <!-- need additional nesting in div to handle stagger animation -->
+      <div *ngFor="let movie of movies" class="movies__cardWrapper">
+        <app-movie-card [movie]="movie" [onTouchScreen]="onTouchScreen">
+        </app-movie-card>
+      </div>
+    </div>
   </ng-template>
 </div>
