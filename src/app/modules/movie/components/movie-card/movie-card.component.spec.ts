@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 
 import { MovieCardComponent } from './movie-card.component';
@@ -11,7 +12,7 @@ describe('MovieCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MovieCardComponent],
-      imports: [MaterialModule]
+      imports: [MaterialModule, RouterTestingModule],
     })
       .compileComponents();
   });
