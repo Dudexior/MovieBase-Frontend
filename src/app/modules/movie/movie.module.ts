@@ -10,10 +10,11 @@ import { ImageWrapperComponent } from './components/movie-card/image-wrapper/ima
 import { MovieDetailsPageComponent } from './components/movie-details-page/movie-details-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
+import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
 
 
 @NgModule({
-  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent],
+  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent, AddMovieDialogComponent],
   imports: [
     CommonModule,
     MovieRoutingModule,

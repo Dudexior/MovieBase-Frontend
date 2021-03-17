@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 
 import { MoviePageComponent } from './movie-page.component';
 
@@ -13,7 +14,7 @@ describe('MoviePageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MoviePageComponent],
-      imports: [HttpClientModule, ReactiveFormsModule],
+      imports: [HttpClientModule, ReactiveFormsModule, MaterialModule],
       providers: [HttpClientModule]
     })
       .compileComponents();
