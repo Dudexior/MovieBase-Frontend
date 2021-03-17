@@ -64,7 +64,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   private downloadMovie(id: number): Subscription {
     this.loading = true;
 
-    return this.movieService.downloadSingleMovie(id).subscribe(mov => {
+    return this.movieService.getSingleMovie(id).subscribe(mov => {
       this.movieDownloadedActions(mov);
     }, () => {
       // error actions

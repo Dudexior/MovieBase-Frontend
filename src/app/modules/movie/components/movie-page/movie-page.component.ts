@@ -43,7 +43,7 @@ export class MoviePageComponent implements OnInit, OnDestroy {
   private downloadMovies(): Subscription {
     this.loading = true;
 
-    return this.moviesService.downloadMovies().subscribe(res => {
+    return this.moviesService.getMovies().subscribe(res => {
       this.movies = res;
       this.loading = false;
     }, () => {

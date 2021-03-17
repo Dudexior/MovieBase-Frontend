@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie';
-import { GET_ALL_MOVIES, GET_SINGLE_MOVIE } from 'src/app/shared/consts';
+import { MOVIES_CONTROLLER, MOVIES_CONTROLLER_ID } from 'src/app/shared/consts';
 import { take } from 'rxjs/operators';
 import { MovieSimple } from '../models/movie-simple';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,28 +15,28 @@ export class MovieService {
 
   constructor(private http: HttpClient, private fb: FormBuilder) { }
 
-  downloadMovies(): Observable<Movie[]> {
-    const url = GET_ALL_MOVIES;
+  getMovies(): Observable<Movie[]> {
+    const url = MOVIES_CONTROLLER;
 
     return this.http.get<Movie[]>(url).pipe(take(1));
   }
 
-  downloadSingleMovie(id: number): Observable<Movie> {
-    const url = GET_SINGLE_MOVIE.replace(/:ID/, id.toString());
+  getSingleMovie(id: number): Observable<Movie> {
+    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, id.toString());
 
-    return this.http.get<Movie>(url);
+    return this.http.get<Movie>(url).pipe(take(1));
   }
 
   patchMovie(id: number, editedMovie: MovieSimple): Observable<Movie> {
-    const url = GET_SINGLE_MOVIE.replace(/:ID/, id.toString());
+    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, id.toString());
 
     return this.http.patch<Movie>(url, editedMovie);
   }
 
   postMovie(newMovie: MovieSimple): Observable<Movie> {
-    const url = GET_ALL_MOVIES;
+    const url = MOVIES_CONTROLLER;
 
-    return this.http.post<Movie>(url, newMovie);
+    return this.http.post<Movie>(url, newMovie).pipe(take(1));
   }
 
   buildMovieForm(movieToPach?: Movie): FormGroup {
