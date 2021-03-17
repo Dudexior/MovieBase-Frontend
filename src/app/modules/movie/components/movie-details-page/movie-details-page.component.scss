@@ -34,3 +34,13 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.actions__edit{
+  display: flex;
+  width:100%;
+  justify-content: space-between;
+}
+
+.edit__button{
+  margin: 0 5px 0 5px;
+}
