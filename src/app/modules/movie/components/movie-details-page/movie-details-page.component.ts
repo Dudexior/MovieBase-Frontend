@@ -86,7 +86,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     return form;
   }
 
-  private movieDownloadedActions(downloadedMovie: Movie) {
+  private movieDownloadedActions(downloadedMovie: Movie): void {
     this.movie = downloadedMovie;
     this.movieForm = this.buildMovieForm(downloadedMovie);
     this.loading = false;
