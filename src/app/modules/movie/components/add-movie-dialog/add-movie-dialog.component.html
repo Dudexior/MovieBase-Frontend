@@ -3,7 +3,8 @@
   <app-movie-form [movieForm]="form" [editMode]="true"></app-movie-form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-flat-button color="primary" class="edit__button edit_button--save" (click)="add()">
+  <button mat-flat-button color="primary" class="button" [disabled]="form.invalid || loading" (click)="add()">
     <mat-icon>save</mat-icon> Add
+    <mat-spinner class="button__overlaySpinner" [diameter]="30" *ngIf="loading"></mat-spinner>
   </button>
 </mat-dialog-actions>

@@ -1,22 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { MovieSimple } from '../../models/movie-simple';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
-  templateUrl: './add-movie-dialog.component.html'
+  templateUrl: './add-movie-dialog.component.html',
+  styles: [
+    `
+    .button__overlaySpinner{
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+
+    .button{
+      position: relative;
+    }
+    `
+  ]
 })
 export class AddMovieDialogComponent implements OnInit {
 
   form!: FormGroup;
+  loading = false;
+  postSubscription: Subscription | undefined;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, public dialogRef: MatDialogRef<AddMovieDialogComponent>) { }
 
   ngOnInit(): void {
     this.form = this.movieService.buildMovieForm();
   }
 
   add(): void {
-    console.log(this.form.getRawValue());
+    this.loading = true;
+
+    const movieToAdd = this.form.getRawValue() as MovieSimple;
+
+    this.postSubscription = this.movieService.postMovie(movieToAdd).subscribe(() => {
+      this.loading = false;
+      this.dialogRef.close(true);
+    }, () => {
+      // error actions
+      this.dialogRef.close(false);
+    });
   }
 
 }

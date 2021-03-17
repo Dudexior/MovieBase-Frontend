@@ -33,6 +33,12 @@ export class MovieService {
     return this.http.patch<Movie>(url, editedMovie);
   }
 
+  postMovie(newMovie: MovieSimple): Observable<Movie> {
+    const url = GET_ALL_MOVIES;
+
+    return this.http.post<Movie>(url, newMovie);
+  }
+
   buildMovieForm(movieToPach?: Movie): FormGroup {
     const form = this.fb.group({
       title: [null, Validators.required],

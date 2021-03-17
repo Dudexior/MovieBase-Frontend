@@ -30,12 +30,13 @@ export class MoviePageComponent implements OnInit, OnDestroy {
 
   openAddingMovieDialog(): void {
     const dialogRef = this.dialog.open(AddMovieDialogComponent, {
-      minHeight: '400px',
       width: '600px',
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
+      if (res) {
+        this.subscriptions.push(this.downloadMovies());
+      }
     });
   }
 
