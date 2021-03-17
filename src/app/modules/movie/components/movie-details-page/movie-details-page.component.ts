@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../models/movie';
+import { MovieSimple } from '../../models/movie-simple';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
@@ -29,6 +30,25 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     this.editMode = !this.editMode;
   }
 
+  revert(): void {
+    this.movieForm.patchValue(this.movie);
+    this.editToggle();
+  }
+
+  save(): void {
+    const editedMovie = this.movieForm.getRawValue() as MovieSimple;
+
+    this.subscriptions.push(
+      this.patchMovie(editedMovie)
+    );
+  }
+
+  private patchMovie(editedMovie: MovieSimple): Subscription {
+    return this.movieService.patchMovie(this.movie.id, editedMovie).subscribe(mov => {
+      this.movieDownloadedActions(mov);
+    });
+  }
+
   private getDataFromUrl(): Subscription {
     return this.route.params.subscribe(params => {
       if (params.id) {
@@ -45,9 +65,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     return this.movieService.downloadSingleMovie(id).subscribe(mov => {
-      this.movie = mov;
-      this.movieForm = this.buildMovieForm(mov);
-      this.loading = false;
+      this.movieDownloadedActions(mov);
     }, () => {
       // error actions
       this.loading = false;
@@ -66,6 +84,13 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     }
 
     return form;
+  }
+
+  private movieDownloadedActions(downloadedMovie: Movie) {
+    this.movie = downloadedMovie;
+    this.movieForm = this.buildMovieForm(downloadedMovie);
+    this.loading = false;
+    this.editMode = false;
   }
 
   ngOnDestroy(): void {
