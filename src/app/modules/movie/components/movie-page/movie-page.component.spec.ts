@@ -43,4 +43,8 @@ describe('MoviePageComponent', () => {
     component.ngOnDestroy();
     expect(testSub.closed).toBeTruthy();
   });
+
+  it('should have a fab button to add new movies', () => {
+    expect(document.querySelector('.pageWrapper__addFab')).toBeTruthy();
+  });
 });

@@ -13,3 +13,13 @@
 .movies__cardWrapper{
   margin: 20px 15px 20px 15px;
 }
+
+.pageWrapper__addFab{
+  position: fixed;
+  right: 40px;
+  bottom: 60px;
+
+  mat-icon{
+    transform: scale(1.5);
+  }
+}
