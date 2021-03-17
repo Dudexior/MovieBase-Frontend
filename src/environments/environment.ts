@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  backendURL: 'https://localhost:44366'
+  backendURL: 'https://moviebaseapi.azurewebsites.net'
 };
 
 /*
