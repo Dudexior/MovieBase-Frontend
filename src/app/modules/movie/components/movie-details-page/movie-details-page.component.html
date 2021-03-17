@@ -1,1 +1,18 @@
-<p>movie-details-page works!</p>
+<div class="pageWrapper">
+  <mat-spinner *ngIf="loading; else movieTemplate"></mat-spinner>
+  <ng-template #movieTemplate>
+    <div class="pageWrapper__movie">
+      <div class="movie__image">
+        <app-image-wrapper></app-image-wrapper>
+      </div>
+      <div class="movie__info">
+        <app-movie-form [movieForm]="movieForm" [editMode]="editMode"></app-movie-form>
+        <div class="info__actions">
+          <button mat-flat-button color="primary" (click)="editToggle()">
+            <mat-icon>create</mat-icon> Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

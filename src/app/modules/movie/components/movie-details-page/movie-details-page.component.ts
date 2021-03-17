@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../models/movie';
@@ -10,16 +11,22 @@ import { MovieService } from '../../services/movie.service';
 })
 export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
-  movie: Movie | undefined;
+  movie!: Movie;
+  movieForm!: FormGroup;
   loading = false;
+  editMode = false;
   subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService) { }
+  constructor(private route: ActivatedRoute, private movieService: MovieService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.getDataFromUrl()
     );
+  }
+
+  editToggle(): void {
+    this.editMode = !this.editMode;
   }
 
   private getDataFromUrl(): Subscription {
@@ -31,7 +38,6 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
       } else {
         console.error('no id in address');
       }
-
     });
   }
 
@@ -40,11 +46,27 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
     return this.movieService.downloadSingleMovie(id).subscribe(mov => {
       this.movie = mov;
+      this.movieForm = this.buildMovieForm(mov);
+      console.log(this.movieForm);
       this.loading = false;
     }, () => {
       // error actions
       this.loading = false;
     });
+  }
+
+  private buildMovieForm(movieToPach?: Movie): FormGroup {
+    const form = this.fb.group({
+      title: [null, Validators.required],
+      description: [null, Validators.required],
+      duration: [null, Validators.required]
+    });
+
+    if (movieToPach) {
+      form.patchValue(movieToPach);
+    }
+
+    return form;
   }
 
   ngOnDestroy(): void {
