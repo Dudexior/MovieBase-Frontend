@@ -47,7 +47,6 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     return this.movieService.downloadSingleMovie(id).subscribe(mov => {
       this.movie = mov;
       this.movieForm = this.buildMovieForm(mov);
-      console.log(this.movieForm);
       this.loading = false;
     }, () => {
       // error actions

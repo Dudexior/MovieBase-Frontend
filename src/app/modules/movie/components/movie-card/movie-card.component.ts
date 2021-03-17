@@ -24,7 +24,6 @@ export class MovieCardComponent implements OnInit {
   }
 
   clickAction(): void {
-    console.log(!this.onTouchScreen);
     if (!this.onTouchScreen) {
       this.router.navigate(['/movie', this.movie.id]);
     }

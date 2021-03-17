@@ -15,6 +15,5 @@ export class MovieFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.editMode ? this.movieForm.enable() : this.movieForm.disable();
-    console.log(this.movieForm.get('duration'));
   }
 }
