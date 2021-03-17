@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 import { GET_ALL_MOVIES, GET_SINGLE_MOVIE } from 'src/app/shared/consts';
 import { take } from 'rxjs/operators';
+import { MovieSimple } from '../models/movie-simple';
 
 
 @Injectable({
@@ -23,5 +24,11 @@ export class MovieService {
     const url = GET_SINGLE_MOVIE.replace(/:ID/, id.toString());
 
     return this.http.get<Movie>(url);
+  }
+
+  patchMovie(id: number, editedMovie: MovieSimple): Observable<Movie> {
+    const url = GET_SINGLE_MOVIE.replace(/:ID/, id.toString());
+
+    return this.http.patch<Movie>(url, editedMovie);
   }
 }
