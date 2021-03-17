@@ -1,0 +1,22 @@
+<form [formGroup]="movieForm" class="form" [ngClass]="{'form--disabled': !editMode}">
+  <mat-form-field class="form__title">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+  <mat-form-field class="form__desc">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field>
+  <mat-form-field class="form__duration">
+    <mat-label class="duration__label">Duration</mat-label>
+    <input matInput type="number" formControlName="duration" class="duration__input" />
+    <span matSuffix>min</span>
+  </mat-form-field>
+
+  <!-- needed to add a mock input form because of space between value and suffix in mat-form-field -->
+  <div class="form__durationMock" *ngIf="!editMode">
+    <span class="durationMock__label">Duration</span> <br />
+    <span class="form__durationReplace">{{movieForm.get('duration')?.value}} min</span>
+  </div>
+</form>

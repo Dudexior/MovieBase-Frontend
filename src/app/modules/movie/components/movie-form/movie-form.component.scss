@@ -1,0 +1,51 @@
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+.form__title{
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
+.form__duration{
+  width: 30%;
+  min-width: 70px;
+}
+
+.form__durationReplace{
+  border-top: .84375em solid transparent;
+  padding: .4375em 0;
+}
+
+.form__duration, ::ng-deep .mat-form-field-underline{
+  transition: opacity 0.25s;
+}
+
+.durationMock__label{
+  // styles matching the mat-label
+  font-size: 11px;
+  opacity: 0.54;
+}
+
+.form--disabled{
+  .form__duration{
+    display: none;
+  }
+
+  .mat-input-element:disabled{
+   color:black;
+  }
+
+  .duration__input, ::ng-deep .mat-form-field-underline{
+   opacity: 0;
+  }
+
+  .duration__input{
+    display: none;
+  }
+
+  .duration__label{
+    display: inline imp !important;
+  }
+}
