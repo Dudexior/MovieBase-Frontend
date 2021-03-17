@@ -5,6 +5,7 @@ import { Movie } from '../models/movie';
 import { GET_ALL_MOVIES, GET_SINGLE_MOVIE } from 'src/app/shared/consts';
 import { take } from 'rxjs/operators';
 import { MovieSimple } from '../models/movie-simple';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { MovieSimple } from '../models/movie-simple';
 })
 export class MovieService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   downloadMovies(): Observable<Movie[]> {
     const url = GET_ALL_MOVIES;
@@ -30,5 +31,19 @@ export class MovieService {
     const url = GET_SINGLE_MOVIE.replace(/:ID/, id.toString());
 
     return this.http.patch<Movie>(url, editedMovie);
+  }
+
+  buildMovieForm(movieToPach?: Movie): FormGroup {
+    const form = this.fb.group({
+      title: [null, Validators.required],
+      description: [null, Validators.required],
+      duration: [null, Validators.required]
+    });
+
+    if (movieToPach) {
+      form.patchValue(movieToPach);
+    }
+
+    return form;
   }
 }

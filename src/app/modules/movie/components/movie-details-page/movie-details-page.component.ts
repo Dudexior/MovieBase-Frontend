@@ -18,7 +18,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   editMode = false;
   subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -72,23 +72,9 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  private buildMovieForm(movieToPach?: Movie): FormGroup {
-    const form = this.fb.group({
-      title: [null, Validators.required],
-      description: [null, Validators.required],
-      duration: [null, Validators.required]
-    });
-
-    if (movieToPach) {
-      form.patchValue(movieToPach);
-    }
-
-    return form;
-  }
-
   private movieDownloadedActions(downloadedMovie: Movie): void {
     this.movie = downloadedMovie;
-    this.movieForm = this.buildMovieForm(downloadedMovie);
+    this.movieForm = this.movieService.buildMovieForm(downloadedMovie);
     this.loading = false;
     this.editMode = false;
   }
