@@ -1,1 +1,9 @@
-<p>add-movie-dialog works!</p>
+<h1 mat-dialog-title>Adding movie</h1>
+<mat-dialog-content>
+  <app-movie-form [movieForm]="form" [editMode]="true"></app-movie-form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" class="edit__button edit_button--save" (click)="add()">
+    <mat-icon>save</mat-icon> Add
+  </button>
+</mat-dialog-actions>
