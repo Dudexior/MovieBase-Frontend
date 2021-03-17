@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { slideHeight } from 'src/app/shared/animations';
 import { Movie } from '../../models/movie';
 
@@ -17,14 +18,15 @@ export class MovieCardComponent implements OnInit {
   // variable manipulated from HTML
   showDesc = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   clickAction(): void {
+    console.log(!this.onTouchScreen);
     if (!this.onTouchScreen) {
-      // TODO router navigation
+      this.router.navigate(['/movie', this.movie.id]);
     }
   }
 }

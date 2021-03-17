@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { MaterialModule } from '../material/material.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent

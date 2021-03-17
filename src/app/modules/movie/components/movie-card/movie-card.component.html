@@ -19,7 +19,7 @@
         <mat-icon class="time__icon">schedule</mat-icon>{{movie.duration}} min
       </div>
       <div class="hidden__actions" *ngIf="onTouchScreen">
-        <button mat-flat-button color="primary">More info</button>
+        <button mat-flat-button color="primary" [routerLink]="['/movie', movie.id]">More info</button>
       </div>
     </div>
   </div>
