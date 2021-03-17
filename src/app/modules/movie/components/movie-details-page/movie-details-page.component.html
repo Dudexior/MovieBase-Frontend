@@ -1,4 +1,4 @@
-<div class="pageWrapper">
+<div class="pageWrapper" [ngClass]="{'pageWrapper--loading': loading}">
   <mat-spinner *ngIf="loading; else movieTemplate"></mat-spinner>
   <ng-template #movieTemplate>
     <div class="pageWrapper__movie">
