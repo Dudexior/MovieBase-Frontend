@@ -1,0 +1,13 @@
+<mat-dialog-content>
+  <span class="warningText">
+    Are you sure you want to <b>delete</b> this movie?
+  </span>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-flat-button color="warn" [mat-dialog-close]="false">
+    No
+  </button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true">
+    Yes
+  </button>
+</mat-dialog-actions>

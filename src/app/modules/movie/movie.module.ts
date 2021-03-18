@@ -11,10 +11,11 @@ import { MovieDetailsPageComponent } from './components/movie-details-page/movie
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
 import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
+import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 
 @NgModule({
-  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent, AddMovieDialogComponent],
+  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent, AddMovieDialogComponent, DeleteConfirmationDialogComponent],
   imports: [
     CommonModule,
     MovieRoutingModule,

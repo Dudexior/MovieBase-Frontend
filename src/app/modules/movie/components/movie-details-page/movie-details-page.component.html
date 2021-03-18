@@ -15,7 +15,8 @@
           <ng-template #editActions>
             <div class="actions__edit">
               <div>
-                <button mat-flat-button color="warn" class="edit__button edit_button--delete" (click)="editToggle()">
+                <button mat-flat-button color="warn" class="edit__button edit_button--delete"
+                  (click)="openDeleteConfirmationDialog()">
                   <mat-icon>delete</mat-icon> Delete
                 </button>
               </div>

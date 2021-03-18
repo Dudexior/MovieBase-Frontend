@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../models/movie';
 import { MovieSimple } from '../../models/movie-simple';
 import { MovieService } from '../../services/movie.service';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   templateUrl: './movie-details-page.component.html',
@@ -18,7 +20,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   editMode = false;
   subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService) { }
+  constructor(private route: ActivatedRoute, private movieService: MovieService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -41,6 +43,14 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.patchMovie(editedMovie)
     );
+  }
+
+  openDeleteConfirmationDialog(): void {
+    const dialogRed = this.dialog.open(DeleteConfirmationDialogComponent);
+
+    dialogRed.afterClosed().subscribe(res => {
+      console.log(res);
+    });
   }
 
   private patchMovie(editedMovie: MovieSimple): Subscription {
