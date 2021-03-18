@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Display } from '../../models/display';
 import { Movie } from '../../models/movie';
 import { MovieSimple } from '../../models/movie-simple';
+import { DisplayService } from '../../services/display.service';
 import { MovieService } from '../../services/movie.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
@@ -16,12 +18,13 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
   movie!: Movie;
   movieForm!: FormGroup;
+  displays!: Display[];
   loading = false;
   editMode = false;
   subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute, private movieService: MovieService,
-              public dialog: MatDialog, private router: Router) { }
+              public dialog: MatDialog, private router: Router, private displayService: DisplayService) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -68,7 +71,8 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     return this.route.params.subscribe(params => {
       if (params.id) {
         this.subscriptions.push(
-          this.downloadMovie(+params.id)
+          this.downloadMovie(+params.id),
+          this.downloadDisplays(+params.id)
         );
       } else {
         console.error('no id in address');
@@ -104,6 +108,12 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     this.movieForm = this.movieService.buildMovieForm(downloadedMovie);
     this.loading = false;
     this.editMode = false;
+  }
+
+  private downloadDisplays(movieId: number): Subscription {
+    return this.displayService.getDisplaysForMovie(movieId).subscribe(res => {
+      this.displays = res;
+    });
   }
 
   ngOnDestroy(): void {
