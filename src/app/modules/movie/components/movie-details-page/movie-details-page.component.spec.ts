@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of, Subscription } from 'rxjs';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 
@@ -20,7 +21,7 @@ describe('MovieDetailsPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MovieDetailsPageComponent],
-      imports: [HttpClientTestingModule, MaterialModule, ReactiveFormsModule],
+      imports: [HttpClientTestingModule, MaterialModule, ReactiveFormsModule, RouterTestingModule],
       providers: [{ provide: ActivatedRoute, useValue: fakeActivatedRoute }]
     })
       .compileComponents();

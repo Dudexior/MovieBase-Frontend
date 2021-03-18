@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../models/movie';
 import { MovieSimple } from '../../models/movie-simple';
@@ -20,7 +20,8 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   editMode = false;
   subscriptions: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private movieService: MovieService,
+              public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -48,8 +49,12 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   openDeleteConfirmationDialog(): void {
     const dialogRed = this.dialog.open(DeleteConfirmationDialogComponent);
 
-    dialogRed.afterClosed().subscribe(res => {
-      console.log(res);
+    dialogRed.afterClosed().subscribe(confirmation => {
+      if (confirmation) {
+        this.subscriptions.push(
+          this.deleteMovie(this.movie.id)
+        );
+      }
     });
   }
 
@@ -76,6 +81,18 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
     return this.movieService.getSingleMovie(id).subscribe(mov => {
       this.movieDownloadedActions(mov);
+    }, () => {
+      // error actions
+      this.loading = false;
+    });
+  }
+
+  private deleteMovie(id: number): Subscription {
+    this.loading = true;
+
+    return this.movieService.deleteMovie(id).subscribe(() => {
+      this.loading = false;
+      this.router.navigate(['']);
     }, () => {
       // error actions
       this.loading = false;

@@ -21,22 +21,28 @@ export class MovieService {
     return this.http.get<Movie[]>(url).pipe(take(1));
   }
 
-  getSingleMovie(id: number): Observable<Movie> {
-    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, id.toString());
+  getSingleMovie(movieId: number): Observable<Movie> {
+    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
 
     return this.http.get<Movie>(url).pipe(take(1));
   }
 
-  patchMovie(id: number, editedMovie: MovieSimple): Observable<Movie> {
-    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, id.toString());
+  patchMovie(movieId: number, editedMovie: MovieSimple): Observable<Movie> {
+    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
 
-    return this.http.patch<Movie>(url, editedMovie);
+    return this.http.patch<Movie>(url, editedMovie).pipe(take(1));
   }
 
   postMovie(newMovie: MovieSimple): Observable<Movie> {
     const url = MOVIES_CONTROLLER;
 
     return this.http.post<Movie>(url, newMovie).pipe(take(1));
+  }
+
+  deleteMovie(movieId: number): Observable<Movie> {
+    const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
+
+    return this.http.delete<Movie>(url).pipe(take(1));
   }
 
   buildMovieForm(movieToPach?: Movie): FormGroup {
