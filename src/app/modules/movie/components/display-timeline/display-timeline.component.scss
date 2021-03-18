@@ -42,3 +42,38 @@
     transform: translateX(0%);
   }
 }
+
+@keyframes heightExpand{
+  from {
+    transform: translateY((-100%));
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@media(max-width: 930px){
+  .timeline{
+    position: relative;
+    height:1000px;
+  }
+  .timeline__displays{
+    flex-direction: column;
+    align-items: space-between;
+  }
+
+  .svg__line{
+    transform: translateX(0);
+    transform: translateY(-100%);
+
+    animation-name: heightExpand;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+
+  .timeline__bar--vertical{
+    position:absolute;
+    top:0;
+    left:10px;
+  }
+}

@@ -59,3 +59,10 @@ svg{
    opacity:1;
  }
 }
+
+@media(max-width: 930px){
+  .elementWrapper{
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+}

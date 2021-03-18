@@ -6,10 +6,17 @@
         [length]="displays.length">
       </app-timeline-element>
     </div>
-    <div class="timeline__bar">
-      <svg height="10" width="90vw" class="bar__svg">
-        <line class="svg__line" x1="0" y1="0" x2="90vw" y1="0"></line>
+    <div class="timeline__bar--vertical" *ngIf="deviceService.flipDisplayGraph$ | async; else horizontalBar">
+      <svg width="10" height="900px" class="bar__svg">
+        <line class="svg__line" x1="0" y1="0" x2="0" y1="900px"></line>
       </svg>
     </div>
+    <ng-template #horizontalBar>
+      <div class="timeline__bar">
+        <svg height="10" width="90vw" class="bar__svg">
+          <line class="svg__line" x1="0" y1="0" x2="90vw" y1="0"></line>
+        </svg>
+      </div>
+    </ng-template>
   </div>
 </ng-template>

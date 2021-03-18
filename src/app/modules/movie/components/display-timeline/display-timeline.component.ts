@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { staggerScaleDisplayElements } from 'src/app/shared/animations';
+import { DeviceService } from 'src/app/shared/modules/services/device.service';
 import { Display } from '../../models/display';
 
 @Component({
@@ -13,7 +14,8 @@ export class DisplayTimelineComponent implements OnInit {
 
   @Input() displays: Display[] = [];
 
-  constructor() { }
+  // device service is used in HTML
+  constructor(public deviceService: DeviceService) { }
 
   ngOnInit(): void {
   }
