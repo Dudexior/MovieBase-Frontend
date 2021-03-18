@@ -1,0 +1,19 @@
+<div class="elementWrapper">
+  <div class="elementWrapper__info" [ngStyle]="{'animation-delay': (1.5/(length-1)) * index + 's'}">
+    <!-- needed to separate date into 2 spans to add br between day and time -->
+    <span class="info__day">{{display.displayDate | date:'shortDate'}}</span> <br />
+    <span class="info__time">{{display.displayDate | date:'shortTime'}}</span> <br />
+    <span class="info__source" *ngIf="display.sourceTypeId == displaySource.ui; else apiSource">
+      <mat-icon>monitor</mat-icon> UI
+    </span>
+    <ng-template #apiSource>
+      <span class="info__source">
+        <mat-icon>public</mat-icon> API
+      </span>
+    </ng-template>
+  </div>
+  <svg [ngStyle]="{'animation-delay': (1.5/(length-1)) * index + 's'}" [attr.length]="length" height="30" width="30"
+    class="elementWrapper__svg">
+    <circle cx="15" cy="15" r="15" />
+  </svg>
+</div>

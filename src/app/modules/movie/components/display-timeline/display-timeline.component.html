@@ -1,0 +1,15 @@
+<span *ngIf="displays.length === 0; else displaysTimeline">No displays for this movie</span>
+<ng-template #displaysTimeline>
+  <div class="timeline">
+    <div class="timeline__displays">
+      <app-timeline-element *ngFor="let display of displays; let i = index" [display]="display" [index]="i"
+        [length]="displays.length">
+      </app-timeline-element>
+    </div>
+    <div class="timeline__bar">
+      <svg height="10" width="90vw" class="bar__svg">
+        <line class="svg__line" x1="0" y1="0" x2="90vw" y1="0"></line>
+      </svg>
+    </div>
+  </div>
+</ng-template>

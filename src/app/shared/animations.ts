@@ -28,3 +28,17 @@ export const staggerScale = trigger('staggerScale', [
     })
   ])
 ]);
+
+export const staggerScaleDisplayElements = trigger('staggerScaleDisplayElements', [
+  transition('* => *', [
+    query(':enter', [
+      style({ transform: 'scale(0)' }),
+      stagger(100, animate(400, style({ transform: 'scale(1)' })))
+    ], {
+      optional: true
+    }),
+    query(':leave', animate(50, style({ transform: 'scale(0)' })), {
+      optional: true
+    })
+  ])
+]);

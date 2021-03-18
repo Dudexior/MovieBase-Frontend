@@ -1,0 +1,44 @@
+@import "../../../../shared/variables.scss";
+
+.timeline{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width:90vw;
+  height:30px;
+}
+
+.timeline__displays{
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline__bar{
+  display: flex;
+  height:30px;
+  align-items: center;
+  transform: translateY(-200%);
+}
+
+.bar__svg{
+  width:90vw;
+}
+
+.svg__line{
+  stroke: $purple;
+  stroke-width:20;
+  transform: translateX(-100%);
+
+  animation-name: widthExpand;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes widthExpand{
+  from {
+    transform: translateX((-100%));
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

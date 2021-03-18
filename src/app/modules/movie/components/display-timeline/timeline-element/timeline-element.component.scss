@@ -1,0 +1,61 @@
+@import "../../../../../shared/variables.scss";
+
+.elementWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.elementWrapper__info{
+  // background-color: #ddd;
+  background-color: #ddd;
+  border-radius: 6px;
+  padding:3px 8px 3px 8px;
+  text-align: center;
+  opacity: 0;
+  margin:10px;
+
+  animation-name: opacityInfo;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.info__time{
+  font-size: 0.75rem;
+}
+
+.info__source{
+  mat-icon{
+    font-size: 1rem;
+    vertical-align: sub;
+  }
+}
+
+svg{
+  animation-name: scaleCircle;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.17,.67,.48,1.84);
+  transform: scale(0);
+  fill: $purple
+}
+
+
+@keyframes scaleCircle{
+ from{
+   transform: scale(0);
+ }
+ to{
+   transform: scale(1);
+ }
+}
+
+@keyframes opacityInfo{
+  from{
+   opacity: 0;
+ }
+ to{
+   opacity:1;
+ }
+}

@@ -12,10 +12,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
 import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { DisplayTimelineComponent } from './components/display-timeline/display-timeline.component';
+import { TimelineElementComponent } from './components/display-timeline/timeline-element/timeline-element.component';
 
 
 @NgModule({
-  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent, AddMovieDialogComponent, DeleteConfirmationDialogComponent],
+  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent, AddMovieDialogComponent, DeleteConfirmationDialogComponent, DisplayTimelineComponent, TimelineElementComponent],
   imports: [
     CommonModule,
     MovieRoutingModule,
