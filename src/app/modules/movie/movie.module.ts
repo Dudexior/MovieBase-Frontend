@@ -14,16 +14,29 @@ import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { DisplayTimelineComponent } from './components/display-timeline/display-timeline.component';
 import { TimelineElementComponent } from './components/display-timeline/timeline-element/timeline-element.component';
+import { TextTruncatePipe } from 'src/app/shared/pipes/text-truncate.pipe';
+import { CoreModule } from 'src/app/shared/modules/core/core.module';
 
 
 @NgModule({
-  declarations: [MoviePageComponent, MovieCardComponent, ImageWrapperComponent, MovieDetailsPageComponent, MovieFormComponent, AddMovieDialogComponent, DeleteConfirmationDialogComponent, DisplayTimelineComponent, TimelineElementComponent],
+  declarations: [
+    MoviePageComponent,
+    MovieCardComponent,
+    ImageWrapperComponent,
+    MovieDetailsPageComponent,
+    MovieFormComponent,
+    AddMovieDialogComponent,
+    DeleteConfirmationDialogComponent,
+    DisplayTimelineComponent,
+    TimelineElementComponent
+  ],
   imports: [
     CommonModule,
     MovieRoutingModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ]
 })
 export class MovieModule { }

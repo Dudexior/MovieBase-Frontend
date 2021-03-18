@@ -4,6 +4,17 @@
     <div class="pageWrapper__movie">
       <div class="movie__image">
         <app-image-wrapper></app-image-wrapper>
+        <div class="image__fileInputWrapper" *ngIf="editMode" @slideHeight>
+          <button mat-flat-button class="fileInputWrapper__styledButton" color="primary"
+            (click)="hiddenFileInput.click()">
+            <mat-icon>insert_photo</mat-icon> Upload
+          </button>
+          <span class="fileInputWrapper__filename" *ngIf="selectedFile?.name">
+            {{selectedFile?.name | textTruncate:19}}
+          </span>
+          <input class="fileInputWrapper__hiddenInput" type="file" (change)="onFileSelect($event)" accept="image/*"
+            #hiddenFileInput>
+        </div>
       </div>
       <div class="movie__info">
         <app-movie-form [movieForm]="movieForm" [editMode]="editMode"></app-movie-form>

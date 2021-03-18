@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { MaterialModule } from '../material/material.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { TextTruncatePipe } from '../../pipes/text-truncate.pipe';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, TextTruncatePipe],
   imports: [
     CommonModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    TextTruncatePipe
   ]
 })
 export class CoreModule { }

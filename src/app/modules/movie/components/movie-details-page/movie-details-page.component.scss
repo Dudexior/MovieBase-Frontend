@@ -48,3 +48,33 @@
 .movie__displays{
   margin-top:30px;
 }
+
+.movie__image{
+  position: relative;
+  overflow: hidden;
+  height:437px;
+}
+
+.image__fileInputWrapper{
+  position: absolute;
+  bottom:0;
+  background: #b1b1b1a4;
+  width:100%;
+}
+
+.fileInputWrapper__styledButton{
+    // need to use margin instead of padding in parent because of animation
+    margin: 10px 5px 10px 5px;
+}
+
+.fileInputWrapper__hiddenInput{
+  display: none;
+}
+
+.fileInputWrapper__filename{
+  font-size: 1rem;
+}
+
+mat-icon{
+  vertical-align: middle;
+}

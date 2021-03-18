@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { slideHeight } from 'src/app/shared/animations';
 import { Display } from '../../models/display';
 import { Movie } from '../../models/movie';
 import { MovieSimple } from '../../models/movie-simple';
@@ -12,7 +13,8 @@ import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog
 
 @Component({
   templateUrl: './movie-details-page.component.html',
-  styleUrls: ['./movie-details-page.component.scss']
+  styleUrls: ['./movie-details-page.component.scss'],
+  animations: [slideHeight]
 })
 export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
@@ -22,6 +24,8 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   loading = false;
   editMode = false;
   subscriptions: Subscription[] = [];
+
+  selectedFile: File | undefined | null;
 
   constructor(private route: ActivatedRoute, private movieService: MovieService,
               public dialog: MatDialog, private router: Router, private displayService: DisplayService) { }
@@ -47,6 +51,14 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.patchMovie(editedMovie)
     );
+  }
+
+  onFileSelect(event: Event): void {
+    // tslint:disable-next-line:no-non-null-assertion
+    const castedEvent = event.target as HTMLInputElement;
+    this.selectedFile = castedEvent.files?.item(0);
+
+    console.log(this.selectedFile);
   }
 
   openDeleteConfirmationDialog(): void {
