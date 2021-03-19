@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Deployed preview
 
-https://moviebase.tomczakd.pl/#/
+https://moviebase.tomczakd.pl/
 
 ## Development server
 
