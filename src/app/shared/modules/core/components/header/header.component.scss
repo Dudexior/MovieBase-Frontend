@@ -4,8 +4,19 @@
   cursor: pointer;
 }
 
+.toolbar__back{
+  display: none;
+}
+
 @media (max-width: 414px){
   .toolbar{
+    position: relative;
     justify-content: center;
+  }
+
+  .toolbar__back{
+    display: inline;
+    position: absolute;
+    left: 15px;
   }
 }
