@@ -3,7 +3,7 @@
   <ng-template #movieTemplate>
     <div class="pageWrapper__movie">
       <div class="movie__image">
-        <app-image-wrapper></app-image-wrapper>
+        <app-image-wrapper [imageDataURL]="movie.image"></app-image-wrapper>
         <div class="image__fileInputWrapper" *ngIf="editMode" @slideHeight>
           <button mat-flat-button class="fileInputWrapper__styledButton" color="primary"
             (click)="hiddenFileInput.click()">

@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="imageDataURL; else imagePlaceholder">
+<div class="wrapper" *ngIf="imageDataURL != null && imageDataURL != ''; else imagePlaceholder">
   <img class="wrapper__image wrapper__image--cover" [src]="imageDataURL" alt="movie image">
   <img class="wrapper__image wrapper__image--main" [src]="imageDataURL" alt="movie image">
 </div>

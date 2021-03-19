@@ -6,8 +6,8 @@ import { MOVIES_CONTROLLER, MOVIES_CONTROLLER_ID } from 'src/app/shared/consts';
 import { map, take } from 'rxjs/operators';
 import { MovieSimple } from '../models/movie-simple';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MovieResponse } from '../models/movie-response';
+import { ImageService } from './image.service';
 
 
 @Injectable({
@@ -15,13 +15,13 @@ import { MovieResponse } from '../models/movie-response';
 })
 export class MovieService {
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, private fb: FormBuilder, private imageService: ImageService) { }
 
   getMovies(): Observable<Movie[]> {
     const url = MOVIES_CONTROLLER;
 
     return this.http.get<MovieResponse[]>(url).pipe(
-      map(res => res.map(this.movieResponseMapper)),
+      map(res => res.map(this.imageService.movieResponseImageMapper)),
       take(1)
     );
   }
@@ -30,7 +30,7 @@ export class MovieService {
     const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
 
     return this.http.get<MovieResponse>(url).pipe(
-      map(this.movieResponseMapper),
+      map(this.imageService.movieResponseImageMapper),
       take(1)
     );
   }
@@ -39,7 +39,7 @@ export class MovieService {
     const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
 
     return this.http.patch<MovieResponse>(url, editedMovie).pipe(
-      map(this.movieResponseMapper),
+      map(this.imageService.movieResponseImageMapper),
       take(1)
     );
   }
@@ -48,7 +48,7 @@ export class MovieService {
     const url = MOVIES_CONTROLLER;
 
     return this.http.post<MovieResponse>(url, newMovie).pipe(
-      map(this.movieResponseMapper),
+      map(this.imageService.movieResponseImageMapper),
       take(1)
     );
   }
@@ -57,7 +57,7 @@ export class MovieService {
     const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
 
     return this.http.delete<MovieResponse>(url).pipe(
-      map(this.movieResponseMapper),
+      map(this.imageService.movieResponseImageMapper),
       take(1));
   }
 
@@ -73,21 +73,5 @@ export class MovieService {
     }
 
     return form;
-  }
-
-  private convertByteArray(byteArray: string): SafeUrl | null {
-    if (byteArray == null || byteArray === '') {
-      return null;
-    }
-
-    const response = `data:image/png;base64,${byteArray}`;
-    return this.sanitizer.bypassSecurityTrustUrl(response);
-  }
-
-  private movieResponseMapper = (movie: MovieResponse) => {
-    const response = movie as Movie;
-    response.image = this.convertByteArray(movie.image);
-
-    return response;
   }
 }
