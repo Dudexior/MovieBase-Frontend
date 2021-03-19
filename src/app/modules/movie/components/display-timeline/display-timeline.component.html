@@ -1,4 +1,4 @@
-<span *ngIf="displays.length === 0; else displaysTimeline">No displays for this movie</span>
+<span *ngIf="displays.length === 0; else displaysTimeline" class="noDisplays">No displays of this movie</span>
 <ng-template #displaysTimeline>
   <div class="timeline">
     <div class="timeline__displays">
