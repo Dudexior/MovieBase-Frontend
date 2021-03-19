@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { staggerScale } from 'src/app/shared/animations';
-import { DeviceService } from 'src/app/shared/modules/services/device.service';
 import { Movie } from '../../models/movie';
 import { MovieService } from '../../services/movie.service';
 import { AddMovieDialogComponent } from '../add-movie-dialog/add-movie-dialog.component';
@@ -19,12 +18,11 @@ export class MoviePageComponent implements OnInit, OnDestroy {
   loading = false;
   onTouchScreen = false;
 
-  constructor(private moviesService: MovieService, private deviceService: DeviceService, public dialog: MatDialog) { }
+  constructor(private moviesService: MovieService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.downloadMovies(),
-      this.listenToTouchScreen()
+      this.downloadMovies()
     );
   }
 
@@ -49,12 +47,6 @@ export class MoviePageComponent implements OnInit, OnDestroy {
     }, () => {
       // error actions
       this.loading = false;
-    });
-  }
-
-  private listenToTouchScreen(): Subscription {
-    return this.deviceService.onTouchScreen$.subscribe(res => {
-      this.onTouchScreen = res;
     });
   }
 

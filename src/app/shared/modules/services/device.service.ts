@@ -30,7 +30,7 @@ export class DeviceService {
   }
 
   private checkIfTouchScreen(): boolean {
-    return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    return window.matchMedia('(hover: none)').matches;
   }
 
 }
