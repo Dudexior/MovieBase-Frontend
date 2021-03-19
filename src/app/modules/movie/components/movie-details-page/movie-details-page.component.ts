@@ -8,6 +8,7 @@ import { Display } from '../../models/display';
 import { Movie } from '../../models/movie';
 import { MovieSimple } from '../../models/movie-simple';
 import { DisplayService } from '../../services/display.service';
+import { ImageService } from '../../services/image.service';
 import { MovieService } from '../../services/movie.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
@@ -27,7 +28,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
   selectedFile: File | undefined | null;
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService,
+  constructor(private route: ActivatedRoute, private movieService: MovieService, private imageService: ImageService,
               public dialog: MatDialog, private router: Router, private displayService: DisplayService) { }
 
   ngOnInit(): void {
@@ -51,14 +52,18 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.patchMovie(editedMovie)
     );
+
+    if (this.selectedFile) {
+      this.subscriptions.push(
+        this.patchImage(this.selectedFile)
+      );
+    }
   }
 
   onFileSelect(event: Event): void {
     // tslint:disable-next-line:no-non-null-assertion
     const castedEvent = event.target as HTMLInputElement;
     this.selectedFile = castedEvent.files?.item(0);
-
-    console.log(this.selectedFile);
   }
 
   openDeleteConfirmationDialog(): void {
@@ -75,7 +80,16 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
 
   private patchMovie(editedMovie: MovieSimple): Subscription {
     return this.movieService.patchMovie(this.movie.id, editedMovie).subscribe(mov => {
-      this.movieDownloadedActions(mov);
+      if (!this.selectedFile) {
+        this.movieDownloadedActions(mov);
+      }
+    });
+  }
+
+  private patchImage(image: File): Subscription {
+    return this.imageService.patchImage(this.movie.id, image).subscribe(res => {
+      this.movieDownloadedActions(res);
+      this.selectedFile = null;
     });
   }
 
