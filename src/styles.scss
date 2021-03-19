@@ -12,3 +12,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width:100vw;
   min-height: calc(100vh - #{$headerHeight});
 }
+
+.snackbar--error{
+  background: #ff3636;
+  color: black;
+}
