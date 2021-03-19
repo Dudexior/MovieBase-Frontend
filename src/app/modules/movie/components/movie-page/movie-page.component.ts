@@ -33,7 +33,7 @@ export class MoviePageComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.subscriptions.push(this.downloadMovies());
+        this.movies.push(res);
       }
     });
   }

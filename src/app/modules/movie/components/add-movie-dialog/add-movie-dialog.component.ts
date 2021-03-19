@@ -41,9 +41,9 @@ export class AddMovieDialogComponent implements OnInit {
 
     const movieToAdd = this.form.getRawValue() as MovieSimple;
 
-    this.postSubscription = this.movieService.postMovie(movieToAdd).subscribe(() => {
+    this.postSubscription = this.movieService.postMovie(movieToAdd).subscribe((res) => {
       this.loading = false;
-      this.dialogRef.close(true);
+      this.dialogRef.close(res);
     }, () => {
       // error actions
       this.dialogRef.close(false);
