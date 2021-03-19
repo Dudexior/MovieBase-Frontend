@@ -84,3 +84,14 @@
 mat-icon{
   vertical-align: middle;
 }
+
+@media(max-width: 414px){
+  .actions__edit{
+    flex-direction: column-reverse;
+
+    button{
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}

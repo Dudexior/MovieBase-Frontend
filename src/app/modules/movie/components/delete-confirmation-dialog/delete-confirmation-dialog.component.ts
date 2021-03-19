@@ -13,6 +13,13 @@ import { Component, OnInit } from '@angular/core';
         width:90px;
         margin: 20px 40px 20px 40px;
       }
+
+      @media(max-width: 414px){
+        button{
+          width:100%;
+          margin: 10px !important;
+        }
+      }
     `
   ]
 })
