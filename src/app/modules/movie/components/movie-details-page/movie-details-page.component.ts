@@ -30,7 +30,8 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   selectedFile: File | undefined | null;
 
   constructor(private route: ActivatedRoute, private movieService: MovieService, private imageService: ImageService,
-              public dialog: MatDialog, private router: Router, private displayService: DisplayService, private snackbarService: SnackbarService) { }
+              public dialog: MatDialog, private router: Router, private displayService: DisplayService,
+              private snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
     this.subscriptions.push(

@@ -24,9 +24,8 @@ describe('HeaderComponent', () => {
   });
 
   it('should have a toolbar with image', () => {
-    const fixture = TestBed.createComponent(HeaderComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.toolbar').querySelector('.toolbar__logo')).toBeTruthy();
-  })
+  });
 });
