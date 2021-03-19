@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-image-wrapper',
@@ -8,7 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class ImageWrapperComponent implements OnInit {
 
-  @Input() imageDataURL?: string;
+  @Input() imageDataURL!: SafeUrl | null;
 
   constructor() { }
 

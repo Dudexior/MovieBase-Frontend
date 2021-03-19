@@ -1,4 +1,7 @@
-<img *ngIf="imageDataURL; else imagePlaceholder" [src]="imageDataURL" alt="movie image">
+<div class="wrapper" *ngIf="imageDataURL; else imagePlaceholder">
+  <img class="wrapper__image wrapper__image--cover" [src]="imageDataURL" alt="movie image">
+  <img class="wrapper__image wrapper__image--main" [src]="imageDataURL" alt="movie image">
+</div>
 <ng-template #imagePlaceholder>
   <img src="assets/movie_placeholder.png" alt="movie image placeholder">
 </ng-template>

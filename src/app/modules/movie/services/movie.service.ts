@@ -80,7 +80,7 @@ export class MovieService {
       return null;
     }
 
-    const response = 'data:image/png;base64,' + byteArray;
+    const response = `data:image/png;base64,${byteArray}`;
     return this.sanitizer.bypassSecurityTrustUrl(response);
   }
 
