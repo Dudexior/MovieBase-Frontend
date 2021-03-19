@@ -30,7 +30,13 @@ export class MovieService {
     const url = MOVIES_CONTROLLER_ID.replace(/:ID/, movieId.toString());
 
     return this.http.get<MovieResponse>(url).pipe(
-      map(this.imageService.movieResponseImageMapper),
+      map(res => {
+        if (res == null) {
+          throw new Error('Movie not found');
+        } else {
+          return this.imageService.movieResponseImageMapper(res);
+        }
+      }),
       take(1)
     );
   }

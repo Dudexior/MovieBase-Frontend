@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { slideHeight } from 'src/app/shared/animations';
+import { SnackbarService } from 'src/app/shared/modules/services/snackbar.service';
 import { Display } from '../../models/display';
 import { Movie } from '../../models/movie';
 import { MovieSimple } from '../../models/movie-simple';
@@ -29,7 +30,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   selectedFile: File | undefined | null;
 
   constructor(private route: ActivatedRoute, private movieService: MovieService, private imageService: ImageService,
-              public dialog: MatDialog, private router: Router, private displayService: DisplayService) { }
+              public dialog: MatDialog, private router: Router, private displayService: DisplayService, private snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -112,7 +113,7 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     return this.movieService.getSingleMovie(id).subscribe(mov => {
       this.movieDownloadedActions(mov);
     }, () => {
-      // error actions
+      this.doesNotExistActions();
       this.loading = false;
     });
   }
@@ -140,6 +141,11 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
     return this.displayService.getDisplaysForMovie(movieId).subscribe(res => {
       this.displays = res;
     });
+  }
+
+  private doesNotExistActions(): void {
+    this.snackbarService.showSnackbar(`Movie does not exist`, true);
+    this.router.navigate(['']);
   }
 
   ngOnDestroy(): void {
