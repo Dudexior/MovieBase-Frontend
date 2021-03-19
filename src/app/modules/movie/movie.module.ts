@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MovieRoutingModule } from './movie-routing.module';
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
@@ -14,8 +13,8 @@ import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie
 import { DeleteConfirmationDialogComponent } from './components/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { DisplayTimelineComponent } from './components/display-timeline/display-timeline.component';
 import { TimelineElementComponent } from './components/display-timeline/timeline-element/timeline-element.component';
-import { TextTruncatePipe } from 'src/app/shared/pipes/text-truncate.pipe';
 import { CoreModule } from 'src/app/shared/modules/core/core.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 @NgModule({
@@ -32,7 +31,7 @@ import { CoreModule } from 'src/app/shared/modules/core/core.module';
   ],
   imports: [
     CommonModule,
-    MovieRoutingModule,
+    AppRoutingModule,
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
