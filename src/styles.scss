@@ -8,6 +8,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+
 .pageWrapper{
   width:100vw;
   min-height: calc(100vh - #{$headerHeight});
