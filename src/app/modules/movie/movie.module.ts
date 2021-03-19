@@ -6,7 +6,7 @@ import { MoviePageComponent } from './components/movie-page/movie-page.component
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
-import { ImageWrapperComponent } from './components/movie-card/image-wrapper/image-wrapper.component';
+import { ImageWrapperComponent } from './components/image-wrapper/image-wrapper.component';
 import { MovieDetailsPageComponent } from './components/movie-details-page/movie-details-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
