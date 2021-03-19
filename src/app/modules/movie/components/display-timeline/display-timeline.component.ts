@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { staggerScaleDisplayElements } from 'src/app/shared/animations';
 import { DeviceService } from 'src/app/shared/modules/services/device.service';
 import { Display } from '../../models/display';
 
@@ -7,7 +6,6 @@ import { Display } from '../../models/display';
   selector: 'app-display-timeline',
   templateUrl: './display-timeline.component.html',
   styleUrls: ['./display-timeline.component.scss'],
-  animations: [staggerScaleDisplayElements],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisplayTimelineComponent implements OnInit {
