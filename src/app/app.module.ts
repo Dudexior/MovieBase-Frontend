@@ -7,6 +7,7 @@ import { CoreModule } from './shared/modules/core/core.module';
 import { MovieModule } from './modules/movie/movie.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DisplaySourceInterceptor } from './shared/interceptors/display-source.interceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DisplaySourceInterceptor } from './shared/interceptors/display-source.i
     MovieModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: DisplaySourceInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: DisplaySourceInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
