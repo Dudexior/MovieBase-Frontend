@@ -36,7 +36,6 @@ export class ImageService {
   }
 
   movieResponseImageMapper = (movie: MovieResponse) => {
-    console.log(movie);
     const response = movie as Movie;
     response.image = this.convertByteArray(movie.image);
 
